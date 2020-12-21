@@ -9,8 +9,8 @@ export default function ContactForm({ onAddContact }) {
   const handleSubmit = e => {
     e.preventDefault();
 
-    resetInputForm();
     onAddContact(name, number);
+    resetInputForm();
   };
 
   const resetInputForm = () => {

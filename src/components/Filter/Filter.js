@@ -10,7 +10,7 @@ const Filter = ({ value, onChangeFilter }) => {
         className={s.input}
         type="text"
         value={value}
-        onChange={e => onChangeFilter(e.target.value)}
+        onChange={onChangeFilter}
       />
     </label>
   );

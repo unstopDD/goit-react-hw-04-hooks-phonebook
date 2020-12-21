@@ -17,15 +17,15 @@ export default function App() {
   }, [contacts]);
 
   const addContact = (name, number) => {
+    if (checkName(name)) {
+      return alert(`${name} is already in contacts`);
+    }
+
     const contact = {
       id: shortid.generate(),
       name,
       number,
     };
-
-    if (checkName(name)) {
-      return alert(`${name} is already in contacts`);
-    }
 
     setContacts([contact, ...contacts]);
   };
@@ -41,6 +41,10 @@ export default function App() {
     );
   };
 
+  const handleChangeFilter = e => {
+    setFilter(e.target.value);
+  };
+
   const getVisibleContacts = () => {
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase()),
@@ -52,10 +56,7 @@ export default function App() {
       <ContactForm onAddContact={addContact} />
 
       {contacts.length > 1 && (
-        <Filter
-          value={filter}
-          onChangeFilter={e => setFilter(e.target.value)}
-        />
+        <Filter value={filter} onChangeFilter={handleChangeFilter} />
       )}
       <h2>Contacts</h2>
       <ContactList
